@@ -1,0 +1,12 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+df=pd.read_csv('data/finance-charts-apple.csv')
+print(df.head())
+df=df.dropna()
+df['收益率']=df['AAPL.Close'].pct_change()
+df['收益率'].plot()
+plt.show()
+df['MA5']=df['AAPL.Close'].rolling(5).mean()
+df['MA20']=df['AAPL.Close'].rolling(20).mean()
+df[['MA5','MA20']].plot()
+plt.show()
